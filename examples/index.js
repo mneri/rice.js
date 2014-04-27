@@ -18,6 +18,8 @@
  * along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
+"use strict";
+
 var citric = require('../lib/citric.js'),
     client,
     options = {
