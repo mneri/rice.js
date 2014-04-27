@@ -34,8 +34,8 @@ var citric = require('../lib/citric.js'),
     };
 
 // Create a client and connect to the network
-client = new citric.Client(options);
-client.connect();
+client = new citric.Client();
+client.connect(options);
 
 // There are 3 main events: connect (when the connection starts), register (when
 // the registration process ends) and close (when the connection is being
