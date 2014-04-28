@@ -26,11 +26,7 @@ var citric = require('../lib/citric.js'),
         host: 'irc.freenode.net',
         nick: 'bot' + parseInt(Math.random() * 1000),
         user: 'jdoe',
-        real: 'John Doe',
-        auth: {
-            type: 'simple',
-            password: null
-        }
+        real: 'John Doe'
     };
 
 // Create a client and connect to the network
