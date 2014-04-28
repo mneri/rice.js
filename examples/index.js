@@ -68,11 +68,11 @@ client.on('JOIN', function (from, channel) {
     var message;
 
     if (from.nick == client.nick()) {
-        console.log('I joined #bots');
+        console.log('I joined #bots515');
     } else {
         console.log(from.nick + ' joined #bots');
         message = 'Hello, ' + from.nick + '!';
-        client.privmsg('#bots', message);
+        client.privmsg('#bots515', message);
         console.log(message);
     }
 });
