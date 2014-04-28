@@ -35,7 +35,7 @@ var citric = require('../lib/citric.js'),
 
 // Create a client and connect to the network
 client = new citric.Client();
-client.connect(options);
+client.startConnection(options);
 
 // There are 3 main events: connect (when the connection starts), register (when
 // the registration process ends) and close (when the connection is being
@@ -43,7 +43,7 @@ client.connect(options);
 
 // Autojoin a channel.
 client.on('register', function () {
-    client.send('JOIN', '#bots');
+    client.join('#bots515');
 });
 
 // Every message generates an event. The first parameter is always an object
@@ -56,7 +56,7 @@ client.on('register', function () {
 
 // If the nickname is already in use we pick another random one
 client.on('ERR_NICKNAMEINUSE', function () {
-    client.send('NICK ', 'bot' + parseInt(Math.random() * 1000));
+    client.nick('bot' + parseInt(Math.random() * 1000));
 });
 
 client.on('ERROR', function (from, error) {
@@ -67,12 +67,12 @@ client.on('ERROR', function (from, error) {
 client.on('JOIN', function (from, channel) {
     var message;
 
-    if (from.nick == client.nick) {
+    if (from.nick == client.nick()) {
         console.log('I joined #bots');
     } else {
         console.log(from.nick + ' joined #bots');
         message = 'Hello, ' + from.nick + '!';
-        client.send('PRIVMSG', '#bots', message);
+        client.privmsg('#bots', message);
         console.log(message);
     }
 });
