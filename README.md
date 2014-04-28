@@ -74,7 +74,15 @@ case it is:
         password: null
     }
 
-Actually only `simple` and `nickserv` auth methods are supported, SASL coming soon.
+Actually only `simple` and `nickserv`, and `sasl` methods are supported. For `sasl` you
+should supply additional parameters:
+
+    auth: {
+        type: 'sasl',
+        nick: 'jdoe',
+        user: 'jdoe',
+        password: 'supersecretpassword'
+    }
 
 Other Features
 ======
