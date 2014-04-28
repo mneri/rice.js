@@ -21,13 +21,14 @@ In the simplest case you can connect to an IRC server like so:
 
 Sending Messages
 ======
-To send a message call the `send()` method.
+There are many convenience methods, one for every IRC command. For example, to send
+a PRIVMSG call:
 
-    client.send('PRIVMSG', '#bots', 'Hello, world!');
+    client.privmsg('#bots', 'Hello, world!');
 
-The first parameter is the command. Any subsequent parameter to the function is a
-parameter to the command. This means that you must keep the RFC on hand. A semicolon
-to the last parameter is automatically added if necessary.
+A list of supported commands among the number and name of their parameters can be
+found in `lib/commands.js`. A semicolon to the last parameter is automatically added
+if necessary.
 
 Receiving Messages
 ======
@@ -77,11 +78,18 @@ Actually only `simple` and `nickserv` auth methods are supported, SASL coming so
 
 Other Features
 ======
-The `client` maintains the state of the connection. There are three properties you can access:
+The `client` maintains the state of the connection. There are three methods you can access:
 
-* `state`: the state of the connection (`closed`, `connected`, `registered`);
-* `nick`: user's current nickname;
-* `mode`: user's current mode flags.
+* `state()`: the state of the connection (`closed`, `connected`, `registered`);
+* `nick()`: user's current nickname;
+* `user()`: username
+* `real()`: user's real name;
+* `mode()`: user's current mode flags.
+
+Note that the name of the methods `nick()`, `user()` and `mode()` conflict with the name of
+the convenience methods for the IRC commands `NICK`, `USER` and `MODE`. If you call these
+methods with no parameters you get the actual value of the nickname, username and the user
+mode flags set. If you call these methods with parameters you send commands to the server.
 
 Further Documentation
 ======
