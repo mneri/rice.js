@@ -11,8 +11,8 @@ In the simplest case you can connect to an IRC server like so:
     var citric = require('/path/to/citric.js'),
         client;
 
-    client = new citric.Client();
-    client.connect({
+    connection = new citric.Connection();
+    connection.start({
         host: 'irc.freenode.net',
         nick: 'jdoe',
         user: 'jdoe',
@@ -24,7 +24,7 @@ Sending Messages
 There are many convenience methods, one for every IRC command. For example, to send
 a PRIVMSG call:
 
-    client.privmsg('#bots', 'Hello, world!');
+    connection.privmsg('#bots', 'Hello, world!');
 
 A list of supported commands among the number and name of their parameters can be
 found in `lib/commands.js`. A semicolon to the last parameter is automatically added
@@ -37,7 +37,7 @@ handle the message. The name of the event is the name of the command as specifie
 the [documentation](https://tools.ietf.org/html/rfc2812). For example, to listen to
 a `PRIVMSG`:
 
-    client.on('privmsg', function(from, to, message) {
+    connection.on('privmsg', function(from, to, message) {
         console.log(from + ': ' + message);
     });
 
