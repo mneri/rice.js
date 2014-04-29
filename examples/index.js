@@ -51,16 +51,16 @@ client.on('register', function () {
 // parameter: the channel the user joined.
 
 // If the nickname is already in use we pick another random one
-client.on('ERR_NICKNAMEINUSE', function () {
+client.on('err_nicknameinuse', function () {
     client.nick('bot' + parseInt(Math.random() * 1000));
 });
 
-client.on('ERROR', function (from, error) {
+client.on('error', function (from, error) {
     console.log(error);
 });
 
 // Every time a user join a channel we say hello.
-client.on('JOIN', function (from, channel) {
+client.on('join', function (from, channel) {
     var message;
 
     if (from.nick == client.nick()) {
@@ -74,11 +74,11 @@ client.on('JOIN', function (from, channel) {
 });
 
 // Log the messages from the server
-client.on('NOTICE', function (from, to, message) {
+client.on('notice', function (from, to, message) {
     console.log(from.nick + ': ' + message);
 });
 
 // Log the messages from the users
-client.on('PRIVMSG', function (from, to, message) {
+client.on('privmsg', function (from, to, message) {
     console.log(from.nick + ': ' + message);
 });
