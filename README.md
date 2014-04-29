@@ -45,13 +45,16 @@ The first parameter to the callback is an object describing the sender (`nick`, 
 `host`). The subsequent parameters depend on the type of the message. Again, read the
 [documentation](https://tools.ietf.org/html/rfc2812), Luke.
 
+Everytime a message is received a `line` event is also emitted.
+
 Events
 ======
-There are three main state events:
+There are four main state events:
 
 * `connect`: when the connection is established;
-* `register`: when the registration process has been completed;
 * `close`: emitted when the connection is closed.
+* `error`: when an error occours;
+* `register`: when the registration process has been completed;
 
 Options
 ======
