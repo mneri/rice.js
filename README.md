@@ -9,7 +9,7 @@ Basic Usage
 In the simplest case you can connect to an IRC server like so:
 
     var citric = require('/path/to/citric.js'),
-        client;
+        connection;
 
     connection = new citric.Connection();
     connection.start({
@@ -46,7 +46,7 @@ the [RFC](https://tools.ietf.org/html/rfc2812) but lowercase. For example:
 The first parameter to the callback is an object describing the sender (`nick`, `user`,
 `host`). The subsequent parameters depend on the type of the message.
 
-Everytime a message is received a `'line'` event is also emitted. Callbacks to this event
+Everytime a message is received a `'line'` event is emitted. Callbacks to this event
 receive as the only argument the line sent by the server.
 
 Events
