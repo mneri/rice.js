@@ -30,6 +30,9 @@ There are many convenience methods, one for every IRC command. For example:
 A list of supported commands can be found in `lib/commands.js`. A semicolon to the last
 parameter is automatically added if necessary.
 
+You can also send raw lines with the `send()` method. The string `'\r\n'` is
+automatically appended if not present.
+
 Receiving Messages
 ======
 Every message received emits an event. You must register to the event in order to
