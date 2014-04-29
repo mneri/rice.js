@@ -37,7 +37,7 @@ handle the message. The name of the event is the name of the command as specifie
 the [documentation](https://tools.ietf.org/html/rfc2812). For example, to listen to
 a `PRIVMSG`:
 
-    client.on('PRIVMSG', function(from, to, message) {
+    client.on('privmsg', function(from, to, message) {
         console.log(from + ': ' + message);
     });
 
