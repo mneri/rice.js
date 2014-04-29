@@ -21,31 +21,33 @@ In the simplest case you can connect to an IRC server like so:
 
 Sending Messages
 ======
-There are many convenience methods, one for every IRC command. For example, to send
-a PRIVMSG call:
+There are many convenience methods, one for every IRC command. For example:
 
+    connection.join('#bots');
     connection.privmsg('#bots', 'Hello, world!');
+    connection.part('#bots', 'Goodbye, all!');
 
-A list of supported commands among the number and name of their parameters can be
-found in `lib/commands.js`. A semicolon to the last parameter is automatically added
-if necessary.
+A list of supported commands can be found in `lib/commands.js`. A semicolon to the last
+parameter is automatically added if necessary.
 
 Receiving Messages
 ======
 Every message received emits an event. You must register to the event in order to
 handle the message. The name of the event is the name of the command as specified in
-the [documentation](https://tools.ietf.org/html/rfc2812). For example, to listen to
-a `PRIVMSG`:
+the [RFC](https://tools.ietf.org/html/rfc2812) but lowercase. For example:
 
     connection.on('privmsg', function(from, to, message) {
         console.log(from + ': ' + message);
     });
+    connection.on('rpl_nowaway', function() {
+        console.log('You are now away');
+    });
 
 The first parameter to the callback is an object describing the sender (`nick`, `user`,
-`host`). The subsequent parameters depend on the type of the message. Again, read the
-[documentation](https://tools.ietf.org/html/rfc2812), Luke.
+`host`). The subsequent parameters depend on the type of the message.
 
-Everytime a message is received a `line` event is also emitted.
+Everytime a message is received a `'line'` event is also emitted. Callbacks to this event
+receive as the only argument the line sent by the server.
 
 Events
 ======
@@ -67,7 +69,8 @@ When starting a connection you can provide an option parameter that should speci
 * `nick`: _mandatory_, the nickname;
 * `user`: _mandatory_, the username;
 * `real`: _mandatory_, the real name of the user;
-* `auth`: the authentication method to use.
+* `auth`: the authentication method to use;
+* `timeout`: specify the socket timeout.
 
 The `auth` parameter is an object that specify the authentication method. In the simplest
 case it is:
