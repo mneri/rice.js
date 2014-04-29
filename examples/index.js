@@ -21,7 +21,7 @@
 "use strict";
 
 var citric = require('../lib/citric.js'),
-    client,
+    connection,
     options = {
         host: 'irc.freenode.net',
         nick: 'bot' + parseInt(Math.random() * 1000),
@@ -29,17 +29,16 @@ var citric = require('../lib/citric.js'),
         real: 'John Doe'
     };
 
-// Create a client and connect to the network
-client = new citric.Client();
-client.startConnection(options);
+connection = new citric.Connection();
+connection.start(options);
 
 // There are 3 main events: connect (when the connection starts), register (when
 // the registration process ends) and close (when the connection is being
 // closed)
 
 // Autojoin a channel.
-client.on('register', function () {
-    client.join('#bots515');
+connection.on('register', function () {
+    connection.join('#bots515');
 });
 
 // Every message generates an event. The first parameter is always an object
@@ -51,34 +50,34 @@ client.on('register', function () {
 // parameter: the channel the user joined.
 
 // If the nickname is already in use we pick another random one
-client.on('err_nicknameinuse', function () {
-    client.nick('bot' + parseInt(Math.random() * 1000));
+connection.on('err_nicknameinuse', function () {
+    connection.nick('bot' + parseInt(Math.random() * 1000));
 });
 
-client.on('error', function (from, error) {
+connection.on('error', function (from, error) {
     console.log(error);
 });
 
 // Every time a user join a channel we say hello.
-client.on('join', function (from, channel) {
+connection.on('join', function (from, channel) {
     var message;
 
-    if (from.nick == client.nick()) {
+    if (from.nick == connection.nick()) {
         console.log('I joined #bots515');
     } else {
         console.log(from.nick + ' joined #bots');
         message = 'Hello, ' + from.nick + '!';
-        client.privmsg('#bots515', message);
+        connection.privmsg('#bots515', message);
         console.log(message);
     }
 });
 
 // Log the messages from the server
-client.on('notice', function (from, to, message) {
+connection.on('notice', function (from, to, message) {
     console.log(from.nick + ': ' + message);
 });
 
 // Log the messages from the users
-client.on('privmsg', function (from, to, message) {
+connection.on('privmsg', function (from, to, message) {
     console.log(from.nick + ': ' + message);
 });
