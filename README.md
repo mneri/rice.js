@@ -101,7 +101,8 @@ The `client` maintains the state of the connection. There are three methods you 
 * `nick()`: user's current nickname;
 * `user()`: username
 * `real()`: user's real name;
-* `mode()`: user's current mode flags.
+* `mode()`: user's current mode flags;
+* `host()`: host's name.
 
 Note that the name of the methods `nick()`, `user()` and `mode()` conflict with the name of
 the convenience methods for the IRC commands `NICK`, `USER` and `MODE`. If you call these
