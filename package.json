@@ -1,20 +1,24 @@
 {
-    "name" : "citric",
-    "version" : "0.0",
-    "author" : "Massimo Neri <hello@mneri.me>",
-    "description" : "A minimalistic IRC client for Node.js",
-    "main" : "lib/citric",
+    "name": "citric",
+    "version": "0.0.1",
+    "author": "Massimo Neri <hello@mneri.me>",
+    "description": "A minimalistic IRC client for Node.js",
+    "main": "lib/citric",
     "dependencies": {},
-    "repository" : {
-        "type" : "git",
-        "url" : "http://github.com/mneri/citric"
+    "devDependencies": {
+        "should": "*",
+        "vows": "*"
     },
-    "bugs" : {
-        "mail" : "hello@mneri.me",
-        "url" : "http://github.com/mneri/citric/issues"
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/mneri/citric"
     },
-    "licenses" : [{
-        "type" : "GPL",
-        "url" : "http://github.com/mneri/citric/raw/master/LICENSE"
+    "bugs": {
+        "mail": "hello@mneri.me",
+        "url": "http://github.com/mneri/citric/issues"
+    },
+    "licenses": [{
+        "type": "GPL",
+        "url": "http://github.com/mneri/citric/raw/master/LICENSE"
     }]
 }
