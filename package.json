@@ -2,7 +2,7 @@
     "name": "citric",
     "version": "0.0.1",
     "author": "Massimo Neri <hello@mneri.me>",
-    "description": "A minimalistic IRC client for Node.js",
+    "description": "A minimalistic IRC library for Node.js",
     "main": "lib/citric",
     "dependencies": {},
     "devDependencies": {
