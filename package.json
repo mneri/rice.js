@@ -1,9 +1,13 @@
 {
     "name": "libirc-client",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Massimo Neri <hello@mneri.me>",
     "description": "A minimalistic library for building IRC clients.",
-    "main": "lib/index.js",
+    "keywords": [
+	"irc",
+	"library"
+    ],
+    "main": "./lib/index.js",
     "dependencies": {},
     "devDependencies": {
         "should": "*",
