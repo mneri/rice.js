@@ -1,7 +1,7 @@
 /*
  * index.js
  *
- * This file is part of citric - Minimalistic IRC library for Node.js
+ * This file is part of libirc-client
  * © Copyright Massimo Neri 2014 <hello@mneri.me>
  *
  * This library is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 
 "use strict";
 
-var citric = require('../lib/citric.js'),
+var irc = require('../lib/index.js'),
     connection,
     options = {
         host: 'irc.freenode.net',
@@ -29,7 +29,7 @@ var citric = require('../lib/citric.js'),
         real: 'John Doe'
     };
 
-connection = new citric.Connection();
+connection = new irc.Connection();
 connection.start(options);
 
 // There are 3 main events: connect (when the connection starts), register (when

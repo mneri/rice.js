@@ -1,6 +1,6 @@
-citric - A minimalistic IRC library
+libirc-client - A minimalistic IRC library for building IRC clients
 ======
-citric is a minimalistic libray for building IRC clients, bots and bouncers in Node.js.
+libirc-client is a minimalistic libray for building IRC clients, bots and bouncers in Node.js.
 It provides only basic IRC functionalities: connect, disconnect, send and receive
 messages.
 
@@ -8,10 +8,10 @@ Basic Usage
 ======
 In the simplest case you can connect to an IRC server like so:
 
-    var citric = require('/path/to/citric.js'),
+    var irc = require('/path/to/lib/index.js'),
         connection;
 
-    connection = new citric.Connection();
+    connection = new irc.Connection();
     connection.start({
         host: 'irc.freenode.net',
         nick: 'jdoe',
