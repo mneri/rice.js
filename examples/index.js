@@ -26,7 +26,8 @@ var irc = require('../lib/index.js'),
         host: 'irc.freenode.net',
         nick: 'bot' + parseInt(Math.random() * 1000),
         user: 'jdoe',
-        real: 'John Doe'
+        real: 'John Doe',
+	secure: true
     };
 
 connection = new irc.Connection();
