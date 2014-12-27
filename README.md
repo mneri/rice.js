@@ -1,8 +1,7 @@
-libirc-client - A minimalistic IRC library for building IRC clients
+libirc-client - A complete IRC library for building IRC clients
 ======
-libirc-client is a minimalistic libray for building IRC clients, bots and bouncers in Node.js.
-It provides only basic IRC functionalities: connect, disconnect, send and receive
-messages.
+libirc-client is a complete libray for building IRC clients, bots and bouncers in Node.js.
+It provides basic IRC functionalities: connect, disconnect, send and receive messages.
 
 Basic Usage
 ======
@@ -11,13 +10,13 @@ In the simplest case you can connect to an IRC server like so:
     var irc = require('/path/to/lib/index.js'),
         connection;
 
-    connection = new irc.Connection();
-    connection.start({
+    connection = new irc.Connection({
         host: 'irc.freenode.net',
         nick: 'jdoe',
         user: 'jdoe',
         real: 'John Doe'
     });
+    connection.start();
 
 Sending Messages
 ======
@@ -54,60 +53,52 @@ receive as the only argument the line sent by the server.
 
 Events
 ======
-There are four main state events:
+There are five main state events:
 
+* `bounce`: when the connection is bounced to another server;
 * `connect`: when the connection is established;
-* `close`: emitted when the connection is closed.
+* `close`: emitted when the connection is closed;
 * `error`: when an error occours;
-* `register`: when the registration process has been completed;
+* `register`: when the registration process has been completed.
 
 Options
 ======
 When starting a connection you can provide an option parameter that should specify:
 
-* `host`: _mandatory_, specify the address of the server;
-* `port`: if not specified the port is guessed on the basis of `secure` field;
-* `secure`: boolean, true if you want secure connection;
+* `autoBounce`: reconnects automatically to another host on bounce;
+* `autoNickChange`: automatically send NICK commands on conflicts;
+* `capabilities`: array of IRCv3 capabilities to request;
 * `encoding`: defaults to the string 'utf8';
+* `host`: _mandatory_, specify the address of the server;
+* `ignores`: array of nicknames to ignore;
+* `mode`: mode to set on login;
+* `pass`: user's password;
+* `port`: if not specified the port is guessed on the basis of `secure` field;
 * `nick`: _mandatory_, the nickname;
 * `user`: _mandatory_, the username;
 * `real`: _mandatory_, the real name of the user;
-* `auth`: the authentication method to use;
+* `secure`: boolean, true if you want secure connection;
 * `timeout`: specify the socket timeout.
-
-The `auth` parameter is an object that specify the authentication method. In the simplest
-case it is:
-
-    auth: {
-        type: 'simple',
-        password: null
-    }
-
-Actually only `simple` and `nickserv`, and `sasl` methods are supported. For `sasl` you
-should supply additional parameters:
-
-    auth: {
-        type: 'sasl',
-        nick: 'jdoe',
-        user: 'jdoe',
-        password: 'supersecretpassword'
-    }
 
 Other Features
 ======
-The `client` maintains the state of the connection. There are three methods you can access:
+The `client` maintains the state of the connection. There are many methods you can access:
 
-* `state()`: the state of the connection (`closed`, `connected`, `registered`);
-* `nick()`: user's current nickname;
-* `user()`: username
-* `real()`: user's real name;
+* `cap()`: current active capabilities;
+* `encoding()`: socket's encoding;
+* `host()`: host's name;
+* `ircd()`: irc daemon name of the host;
 * `mode()`: user's current mode flags;
-* `host()`: host's name.
+* `nick()`: user's current nickname;
+* `real()`: user's real name;
+* `state()`: the state of the connection (`closed`, `connected`, `registered`);
+* `user()`: username.
 
-Note that the name of the methods `nick()`, `user()` and `mode()` conflict with the name of
-the convenience methods for the IRC commands `NICK`, `USER` and `MODE`. If you call these
-methods with no parameters you get the actual value of the nickname, username and the user
-mode flags set. If you call these methods with parameters you send commands to the server.
+Note that the name of the methods `cap()`, `nick()`, `user()` and `mode()` are in conflict
+with the name of the methods for the IRC commands `NICK`, `USER` and `MODE`. If you call
+these methods with no parameters you get the actual value of the nickname, username and
+the user mode flags set. If you call these methods with at least one parameter you send
+commands to the server.
 
 Further Documentation
 ======
