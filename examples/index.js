@@ -30,8 +30,8 @@ var irc = require('../lib/index.js'),
 	secure: true
     };
 
-connection = new irc.Connection();
-connection.start(options);
+connection = new irc.Connection(options);
+connection.start();
 
 // There are 3 main events: connect (when the connection starts), register (when
 // the registration process ends) and close (when the connection is being
